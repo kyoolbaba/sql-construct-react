@@ -1,0 +1,17 @@
+.parameter-section {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.param-section {
+    display: flex;
+    margin: 2% 1%;
+    width: 100%;
+    margin-top: 1%;
+}
+
+.parameter-type{
+        width: 33%;
+}

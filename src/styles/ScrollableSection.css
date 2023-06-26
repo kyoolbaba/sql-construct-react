@@ -1,0 +1,23 @@
+.scrollable-section{
+    height: 30vh;
+    overflow: scroll;
+    min-height: 100px;
+}
+.param-manupulate-section{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: stretch;
+}
+.text-transform{
+    text-transform: none;
+}
+.add-button{
+    margin-top: 16px;
+}
+.delete-button{
+    margin-top: 16px;
+}
+.tab-outline{
+    background: antiquewhite;
+}
