@@ -1,0 +1,10 @@
+export const ADDPARAMETER="AddNewParameter"
+export const DELETEPARAMETER="DeleteTheParameter"
+export const ALTERPARAMETER="AlterTheParameter"
+export const SETCURRENTPARAMETER="SetTheCurrentParameter"
+export const ADDOPTIONs="AddOptions"
+export const SETSELECTEDPARAMETER="SetSelectedParameter"
+export const RESETPARAMLIST="ResetParamList"
+export const ADDTOPARAMETERLIST="AddToParamList"
+export const DELETEFROMPARAMETERLIST="DeleteFromParamList"
+

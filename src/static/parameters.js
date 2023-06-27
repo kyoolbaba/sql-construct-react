@@ -25,26 +25,26 @@ export const function_details={
 }
 
 export const param_details={
-    default:{
-        option_order:{ type: "INT"},
-        required: { type: "Options", options:[ false ,true]},
-        type:{type:"Options", options:["TEXT","INT","FLOAT","MULTI_SELECT","SINGLE_SELECT"]}
+    parameter_type:{
+        option_order:{ type: "INT" , display:false},
+        required: { type: "Options", options:[ false ,true], display:true},
+        type:{type:"Options", options:["TEXT","INT","FLOAT","MULTI_SELECT","SINGLE_SELECT"],display:true}
 
     },
     parameter_header:{
-        name:{type:"TEXT"},
-        label:{type:"TEXT"},
-        type:{type: "Options",options:["DATA_HEADER","DATA_BODY","STATIC","DATA_FILE","DATA_TABLE"]},
-        description:{ type: "TEXT"},
-        note:{ type: "TEXT"},
-        header:{ type: "INT"},
-        value:{ type: "TEXT"},
+        name:{type:"TEXT",display:true},
+        label:{type:"TEXT",display:true},
+        type:{type: "Options",options:["DATA_HEADER","DATA_BODY","STATIC","DATA_FILE","DATA_TABLE"],display:true},
+        description:{ type: "TEXT",display:true},
+        note:{ type: "TEXT",display:true},
+        header:{ type: "INT",display:true},
+        value:{ type: "TEXT",display:true},
     },
     parameter_value:{
-        name:{ type: "TEXT"},  
-        label:{ type: "TEXT"},  
-        description:{ type: "TEXT"},  
-        type:{type: "Options",options:["DATA_HEADER","DATA_BODY","STATIC","DATA_FILE","DATA_TABLE"]},
+        name:{ type: "TEXT",display:true},  
+        label:{ type: "TEXT",display:true},  
+        description:{ type: "TEXT",display:true},  
+        type:{type: "Options",options:["DATA_HEADER","DATA_BODY","STATIC","DATA_FILE","DATA_TABLE"],display:true},
     }
 
 }
