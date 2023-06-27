@@ -5,7 +5,7 @@ import "../../styles/ScrollableSection.css";
 import createTheme from "@mui/material";
 import { MyContext } from "../../context/Mycontext";
 import { useDispatch, useSelector } from "react-redux";
-import { setSelectedParam } from "../../store/parameter/parameterType";
+import { setSelectedParam } from "../../Redux/parameter/parameterType";
 const TabSection = (props) => {
   const {paramList, currentParam, setCurrentParam } = useContext(MyContext);
   const label = props.label;

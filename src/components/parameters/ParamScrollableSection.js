@@ -17,7 +17,7 @@ import {
   addToParameterList,
   delParameter,
   resetParamList,
-} from "../../store/parameter/parameterType";
+} from "../../Redux/parameter/parameterType";
 const ParamScrollableSection = (props) => {
   const [addNewParameter, setAddNewParameter] = useState("");
   const [dragItemIndex, setDragItemIndex] = useState("");

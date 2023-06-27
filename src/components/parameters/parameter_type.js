@@ -9,8 +9,8 @@ import "../../styles/parameterType.css";
 import { MyContext } from "../../context/Mycontext";
 import TextBox from "./TextBox";
 import { useDispatch, useSelector } from "react-redux";
-import { alterParameter } from "../../store/parameter/parameterType";
-import { setCurrentParam } from "../../store/parameter/parameterType";
+import { alterParameter } from "../../Redux/parameter/parameterType";
+import { setCurrentParam } from "../../Redux/parameter/parameterType";
 const ParameterType = (props) => {
   const {
 

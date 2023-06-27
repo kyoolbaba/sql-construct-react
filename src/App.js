@@ -4,7 +4,7 @@ import MainPage from "./components/main_page";
 import { useEffect, useState } from "react";
 import { MyContext } from "./context/Mycontext";
 import { useSelector,connect, useDispatch } from "react-redux";
-import { addParameter, delParameter } from "./store/parameter/parameterType";
+import { addParameter, delParameter } from "./Redux/parameter/parameterType";
 
 
 function App() {
