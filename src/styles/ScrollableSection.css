@@ -21,3 +21,11 @@
 .tab-outline{
     background: antiquewhite;
 }
+
+.tab-class {
+    text-overflow: ellipsis;
+}
+
+.param-scrollable-section {
+    width: 20vw;
+}

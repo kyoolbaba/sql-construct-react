@@ -15,3 +15,20 @@
 .parameter-type{
         width: 33%;
 }
+
+.toggle-main-section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.main-section-toggle{
+    background: lightblue;
+}
+.editable-section {
+    width: 80vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}

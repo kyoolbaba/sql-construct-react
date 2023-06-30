@@ -1,17 +1,15 @@
 const ParamListBody = (param_name) => {
   return {
     name:param_name,
-    default: {
-      option_order: 0,
-      required: true,
-    },
 
     parameter_type: {
+    option_order: 0,
+    required: true,
       type: "",
       description: "",
       note: "",
       header: 9999,
-      value: "",
+      value: "NULL",
     },
     parameter_header: {
       name: "",
@@ -25,6 +23,7 @@ const ParamListBody = (param_name) => {
       description: "",
       type: "",
     },
+    options:{}
   };
 };
 

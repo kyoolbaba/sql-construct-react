@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 // import Button from '../Button'
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -7,44 +7,71 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import Tabs from "@mui/material/Tabs";
 import "../../styles/ScrollableSection.css";
-import { useState } from "react";
 import TabSection from "./TabSection";
-import { MyContext } from "../../Store/Mycontext";
-import ParameterBody from "../../static/parameter_body";
 import ParamListBody from "../../static/parameterListBody";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addParameter,
+  addToParameterList,
+  delParameter,
+  resetParamList,
+  setFunctionDetails,
+} from "../../Redux/parameter/parameterType";
+import Options from "./options/Options";
+import ParameterBody from "../../static/parameter_body";
+import { params_list } from "../../static/parameters";
 const ParamScrollableSection = (props) => {
   const [addNewParameter, setAddNewParameter] = useState("");
   const [dragItemIndex, setDragItemIndex] = useState("");
   const [dragOverItemIndex, setDragOverItemIndex] = useState("");
-  const { setParamList, deleteParamInList, parameterList ,updateParameterList} =
-    useContext(MyContext);
+
+  const dispatch = useDispatch();
+  const parameter_list = useSelector(
+    (state) => state.parameterReducer.parameterList
+  );
+  const selectedParam=useSelector(state=>state.parameterReducer.selectedParam)
+
+
 
   const handleChangeAddNewParameter = (event) => {
     setAddNewParameter(event.target.value);
   };
 
   const onClickDelSelectedParam = (event) => {
-    deleteParamInList(props.selectedParam);
-    props.setSelectedParam("No Param Selected");
+    dispatch(delParameter(selectedParam))
   };
 
   const addNewParam = (event) => {
-    if (addNewParameter !== "") {
-      // console.log(props.paramList)
-      // let list_param = props.paramList;
-      // list_param.push({ name: addNewParameter });
+    
+    if (addNewParameter !== "" & parameter_list.indexOf(addNewParameter
+        .toLowerCase()
+        .split(" ")
+        .filter((x) => x !== "")
+        .join(" "))===-1) {
+
+
 
       // Handling lowercase extra space and unique keys for parameter names
-      setParamList(
-        ParamListBody(
-          addNewParameter
-            .toLowerCase()
-            .split(" ")
-            .filter((x) => x !== "")
-            .join(" ")
+      // let param_list= parameter_list
+      // params_list.push()
+      // dispatch(addToParameterList(            addNewParameter
+      //   .toLowerCase()
+      //   .split(" ")
+      //   .filter((x) => x !== "")
+      //   .join(" ")));
+      dispatch(
+        addParameter(
+          ParamListBody(
+            addNewParameter
+              .toLowerCase()
+              .split(" ")
+              .filter((x) => x !== "")
+              .join(" ")
+          )
         )
       );
     }
+    
     setAddNewParameter("");
   };
 
@@ -66,14 +93,15 @@ const ParamScrollableSection = (props) => {
   };
 
   const handleDrop = (index) => {
-    console.log(`Move Items ${dragItemIndex} to the position `,index);
-    const list_param=[...parameterList];
-    const dragItem=list_param.splice(dragItemIndex,1)[0]
-    list_param.splice(dragOverItemIndex,0,dragItem)
+    // console.log(`Move Items ${dragItemIndex} to the position `,index);
+    const list_param = [...parameter_list];
+    const dragItem = list_param.splice(dragItemIndex, 1)[0];
+    list_param.splice(dragOverItemIndex, 0, dragItem);
 
-    updateParameterList(list_param)
-    
-    console.log(parameterList,dragItemIndex,dragOverItemIndex)
+    dispatch(resetParamList(list_param));
+    console.log(parameter_list);
+  
+    // console.log(parameterList,dragItemIndex,dragOverItemIndex)
     setDragOverItemIndex(undefined);
     setDragItemIndex(undefined);
   };
@@ -83,12 +111,10 @@ const ParamScrollableSection = (props) => {
     // setDragItemIndex(undefined);
   };
   const handleOnDragEnter = (index) => {
-    console.log(index,"Drag Enter")
+    // console.log(index,"Drag Enter")
     setDragOverItemIndex(index);
-
   };
   const handleOnDragLeave = (event) => {
-
     // setDragOverItemIndex(undefined);
   };
 
@@ -124,7 +150,7 @@ const ParamScrollableSection = (props) => {
           orientation="vertical"
         >
           {/* {list_} */}
-          {props.parameterList.map((val, idx) => {
+          {parameter_list.map((val, idx) => {
             return (
               <div
                 draggable
@@ -132,13 +158,11 @@ const ParamScrollableSection = (props) => {
                 onDragStart={(event) => handleDragStart(event, idx)}
                 onDragOver={(event) => handleDragOver(event)}
                 onDragEnd={handleOnDragEnd}
-                onDragEnter={()=>handleOnDragEnter(idx)}
+                onDragEnter={() => handleOnDragEnter(idx)}
                 onDragLeave={handleOnDragLeave}
-                onDrop={()=>handleDrop(idx)}
+                onDrop={() => handleDrop(idx)}
               >
                 <TabSection
-                  setS={props.selectedParam}
-                  satSelected={props.setSelectedParam}
                   label={val}
                 />
               </div>
@@ -175,6 +199,13 @@ const ParamScrollableSection = (props) => {
             Delete{" "}
           </Button>
         </div>
+        {/* {(currentParam &&
+          currentParam.parameter_type &&
+          (["SINGLE_SELECT", "MULTI_SELECT"].indexOf(
+            currentParam.parameter_type.type
+          ) !==
+            -1) &
+            (currentParam.parameter_value.type === "STATIC")) ? <Options />:<></>} */}
       </div>
     </>
   );
