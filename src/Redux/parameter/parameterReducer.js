@@ -1,10 +1,17 @@
 import { params_list } from "../../static/parameters";
+import ParameterBody from "../../static/parameter_body";
 import * as actions from "./parameterActions";
+import { setCurrentParam } from "./parameterType";
 const initialState = {
+  functionDetails:ParameterBody(""),
   data: {},
   parameterList: [],
   selectedParam: "",
-  currentParam: {},
+  currentParam: ParameterBody(""),
+  parameterCurrentdefault:{},
+  functionCurrentdefault:{},
+  optionsDetailsCurrentDefault:{},
+  toggleSection:"Parameter Details"
 };
 
 const parameterReducer = (state = initialState, action) => {
@@ -12,13 +19,13 @@ const parameterReducer = (state = initialState, action) => {
 
     let data = { ...state.data };
     let param_list=state.parameterList
-    params_list.push(action.payload.name)
+    param_list.push(action.payload.name)
 
     data[action.payload.name] = action.payload;
     return {
       ...state,
       data: data,
-      parameterList:params_list
+      parameterList:param_list
     };
   } else if (action.type === actions.DELETEPARAMETER) {
     console.log("From Delete Section")
@@ -48,7 +55,12 @@ const parameterReducer = (state = initialState, action) => {
     };
   } else if (action.type === actions.SETSELECTEDPARAMETER) {
     console.log("CHANING SELECTEDD")
-    let currentParam=state.data[action.payload]
+    let currentParam={}
+    if(["Parameter Details","Options Details"].indexOf(state.toggleSection)===-1){
+      currentParam=state.functionDetails
+    }else{
+    currentParam=state.data[action.payload]
+  }
     return {
       ...state,
       selectedParam: action.payload,
@@ -78,6 +90,74 @@ const parameterReducer = (state = initialState, action) => {
     }
 
   }
+  else if (action.type===actions.TOGGLESECTION){
+    return {
+      ...state,
+      toggleSection:action.payload
+
+    }
+  }
+
+  else if (action.type===actions.SETFUNCTIONDETAILS){
+    return {
+      ...state,
+      functionDetails:action.payload
+
+    }
+  }
+
+  else if (action.type===actions.ALTERFUNCTIONDETAILS){
+    return {
+      ...state,
+      functionDetails:action.payload
+
+    }
+  }
+
+  else if (action.type===actions.RESETCURRENTPARAMETER){
+    let currentParam={}
+    if(action.payload==="Function Details"){
+        currentParam=state.functionDetails
+    }
+    else if (["Parameter Details","Option Details"].indexOf(action.payload)!==1){
+      let selectedParam=state.selectedParam
+      currentParam=state.data[selectedParam]
+    }
+
+
+    return {
+      ...state,
+      currentParam:currentParam
+    }
+  }
+else if(action.type===actions.ADDTOOPTIONSLIST){
+  console.log("CALLING Add Options list")
+  let selectedParam=state.selectedParam
+  let options=state.data[selectedParam].options
+  options[action.payload[0]]=action.payload[1]
+  let data=state.data
+  data[selectedParam].options=options
+  return{
+    ...state,data:data
+  }
+}
+
+else if (action.type===actions.ALTEROPTIONSLIST){
+  let selectedParam=state.selectedParam
+  let data=state.data
+  data.options=action.payload
+  return{
+    ...state,data:data
+  }
+
+
+}
+
+else if(action.type===actions.RESETALLDATA){
+  return initialState
+
+}
+
 //   else if (action.type === actions.ADDTOPARAMETERLIST) {
 
 //     if (action.payload !== undefined) {

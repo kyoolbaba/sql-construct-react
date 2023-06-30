@@ -9,7 +9,7 @@ const ParamListBody = (param_name) => {
       description: "",
       note: "",
       header: 9999,
-      value: "",
+      value: "NULL",
     },
     parameter_header: {
       name: "",
@@ -23,6 +23,7 @@ const ParamListBody = (param_name) => {
       description: "",
       type: "",
     },
+    options:{}
   };
 };
 

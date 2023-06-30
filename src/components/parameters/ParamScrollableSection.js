@@ -8,57 +8,57 @@ import AddIcon from "@mui/icons-material/Add";
 import Tabs from "@mui/material/Tabs";
 import "../../styles/ScrollableSection.css";
 import TabSection from "./TabSection";
-import ParameterBody from "../../static/parameter_body";
 import ParamListBody from "../../static/parameterListBody";
-import { MyContext } from "../../context/Mycontext";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addParameter,
   addToParameterList,
   delParameter,
   resetParamList,
+  setFunctionDetails,
 } from "../../Redux/parameter/parameterType";
+import Options from "./options/Options";
+import ParameterBody from "../../static/parameter_body";
+import { params_list } from "../../static/parameters";
 const ParamScrollableSection = (props) => {
   const [addNewParameter, setAddNewParameter] = useState("");
   const [dragItemIndex, setDragItemIndex] = useState("");
   const [dragOverItemIndex, setDragOverItemIndex] = useState("");
-  const {
-    deleteParamInList,
-    updateParameterList,
-  } = useContext(MyContext);
+
   const dispatch = useDispatch();
   const parameter_list = useSelector(
     (state) => state.parameterReducer.parameterList
   );
-
   const selectedParam=useSelector(state=>state.parameterReducer.selectedParam)
 
 
-  console.log(parameter_list);
 
-  // console.log()
   const handleChangeAddNewParameter = (event) => {
     setAddNewParameter(event.target.value);
   };
 
   const onClickDelSelectedParam = (event) => {
     dispatch(delParameter(selectedParam))
-    // deleteParamInList(props.selectedParam);
-    // props.setSelectedParam("No Param Selected");
   };
 
   const addNewParam = (event) => {
-    dispatch(addToParameterList());
+    
     if (addNewParameter !== "" & parameter_list.indexOf(addNewParameter
         .toLowerCase()
         .split(" ")
         .filter((x) => x !== "")
         .join(" "))===-1) {
-      // console.log(props.paramList)
-      // let list_param = props.paramList;
-      // list_param.push({ name: addNewParameter });
+
+
 
       // Handling lowercase extra space and unique keys for parameter names
+      // let param_list= parameter_list
+      // params_list.push()
+      // dispatch(addToParameterList(            addNewParameter
+      //   .toLowerCase()
+      //   .split(" ")
+      //   .filter((x) => x !== "")
+      //   .join(" ")));
       dispatch(
         addParameter(
           ParamListBody(
@@ -70,26 +70,8 @@ const ParamScrollableSection = (props) => {
           )
         )
       );
-
-    //   dispatch(
-    //     addToParameterList(
-    //       addNewParameter
-    //         .toLowerCase()
-    //         .split(" ")
-    //         .filter((x) => x !== "")
-    //         .join(" ")
-    //     )
-    //   );
-      //   setParamList(
-      //     ParamListBody(
-      //       addNewParameter
-      //         .toLowerCase()
-      //         .split(" ")
-      //         .filter((x) => x !== "")
-      //         .join(" ")
-      //     )
-      //   );
     }
+    
     setAddNewParameter("");
   };
 
@@ -118,7 +100,7 @@ const ParamScrollableSection = (props) => {
 
     dispatch(resetParamList(list_param));
     console.log(parameter_list);
-    updateParameterList(list_param);
+  
     // console.log(parameterList,dragItemIndex,dragOverItemIndex)
     setDragOverItemIndex(undefined);
     setDragItemIndex(undefined);
@@ -181,8 +163,6 @@ const ParamScrollableSection = (props) => {
                 onDrop={() => handleDrop(idx)}
               >
                 <TabSection
-                  setS={props.selectedParam}
-                  satSelected={props.setSelectedParam}
                   label={val}
                 />
               </div>
@@ -219,6 +199,13 @@ const ParamScrollableSection = (props) => {
             Delete{" "}
           </Button>
         </div>
+        {/* {(currentParam &&
+          currentParam.parameter_type &&
+          (["SINGLE_SELECT", "MULTI_SELECT"].indexOf(
+            currentParam.parameter_type.type
+          ) !==
+            -1) &
+            (currentParam.parameter_value.type === "STATIC")) ? <Options />:<></>} */}
       </div>
     </>
   );

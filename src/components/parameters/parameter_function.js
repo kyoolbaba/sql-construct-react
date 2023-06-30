@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
@@ -6,13 +6,11 @@ import Select from "@mui/material/Select";
 import { FormControl } from "@mui/material";
 import "../../styles/parameterType.css";
 import { useDispatch, useSelector } from "react-redux";
-import { alterParameter, resetCurrentParameter } from "../../Redux/parameter/parameterType";
+import { alterParameter } from "../../Redux/parameter/parameterType";
 import { setCurrentParam } from "../../Redux/parameter/parameterType";
-const ParameterType = (props) => {
-    const pageContent=useSelector(state=>state.parameterReducer.toggleSection)
-
+const ParameterFunctionDetails = (props) => {
   const currentParameter = useSelector(
-    (state) => state.parameterReducer.currentParam
+    (state) => state.parameterReducer.functionCurrentdefault
   );
   const dispatch = useDispatch();
 //   console.log(currentParameter, "printing CUrre3nt parameter");
@@ -125,4 +123,4 @@ const ParameterType = (props) => {
   );
 };
 
-export default ParameterType;
+export default ParameterFunctionDetails;

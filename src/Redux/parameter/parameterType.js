@@ -54,3 +54,59 @@ export const deleteFromParameterList=(data)=>{
         payload:data
     }
 }
+
+export const toggleSection=(data)=>{
+    return{
+        type:actions.TOGGLESECTION,
+        payload:data
+    }
+}
+
+export const setFunctionDetails=(data)=>{
+    return{
+        type:actions.SETFUNCTIONDETAILS,
+        payload:data
+    }
+}
+
+export const alterFunctionDetails=(data)=>{
+    return{
+        type:actions.ALTERFUNCTIONDETAILS,
+        payload:data
+    }
+}
+
+
+export const resetCurrentParameter=(data)=>{
+    return{
+        type:actions.RESETCURRENTPARAMETER,
+        payload:data
+    }
+}
+
+export const addToOptionsList=(data)=>{
+    return{
+        type:actions.ADDTOOPTIONSLIST,
+        payload:data
+    }
+}
+
+export const deleteFromOptionsList=(data)=>{
+    return {
+        type:actions.REMOVEFROMOPTIONSLIST,
+        payload:data
+    }
+}
+
+export const resetOptionsList=(data)=>{
+    return {
+        type:actions.ALTEROPTIONSLIST,
+        payload:data
+    }
+}
+
+export const resetAllData=()=>{
+    return{
+        type:actions.RESETALLDATA
+    }
+}

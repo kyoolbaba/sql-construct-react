@@ -106,6 +106,7 @@ const updateCurrentParam=(data)=>{
         }}
       >
         <MainPage heading="SQL Construct" />
+        
       </MyContext.Provider>
     </div>
   );

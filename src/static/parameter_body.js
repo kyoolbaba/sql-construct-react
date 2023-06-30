@@ -9,7 +9,8 @@ const ParameterBody=(param_name)=>{
             r_is_chain_function: false,
             function_name: "",
             function_language: "",
-            function_label: ""
+            function_label: "",
+            category_id: 0,
         },
         function_meta_data: {
             is_active: true,
@@ -27,7 +28,7 @@ const ParameterBody=(param_name)=>{
             function_popup_description: "",
             function_search_tags: ""
         },
-        category_id: 0,
+        
         params: [
                    ]
     }
