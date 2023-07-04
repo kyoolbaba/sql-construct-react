@@ -138,7 +138,7 @@ const ParamScrollableSection = (props) => {
 
   return (
     <>
-      <div className="scrollable-section-header">ParamScrollableSection</div>
+      <div className="scrollable-section-header">Parameter List</div>
       <div className="scrollable-section">
         {/* {list_} */}
         <Tabs

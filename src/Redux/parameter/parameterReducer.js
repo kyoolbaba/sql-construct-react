@@ -30,6 +30,7 @@ const parameterReducer = (state = initialState, action) => {
   } else if (action.type === actions.DELETEPARAMETER) {
     console.log("From Delete Section")
     let data = { ...state.data };
+    
     let parameter_list=state.parameterList;
       let index=parameter_list.indexOf(action.payload);
       parameter_list.splice(index, 1);
@@ -45,6 +46,10 @@ const parameterReducer = (state = initialState, action) => {
       } else {
         selectedParam=""
       }
+
+    if(state.toggleSection==="Function Details"){
+        currentParam=state.functionDetails
+    }
     delete data[action.payload];
     return {
       ...state,

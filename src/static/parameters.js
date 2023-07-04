@@ -23,7 +23,7 @@ export const function_details = {
     function_popup_title: { type: "TEXT" ,display: true},
     function_popup_description: { type: "TEXT" ,display: true},
     function_search_tags: { type: "TEXT" ,display: true},
-    category_id: { type: "INT",display: true },
+    // category_id: { type: "INT",display: true },
   },
 };
 

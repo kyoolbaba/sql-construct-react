@@ -5,7 +5,8 @@ const dummy_payload={
         "r_is_chain_function": false,
         "function_name": "Function - Roll Up",
         "function_language": "PYTHON",
-        "function_label": "Roll Up"
+        "function_label": "Roll Up",
+        "category_id": 404,
     },
     "function_meta_data": {
         "is_active": true,
@@ -23,7 +24,6 @@ const dummy_payload={
         "function_popup_description": "",
         "function_search_tags": "50"
     },
-    "category_id": 404,
     "params": [
         {
             "default": {

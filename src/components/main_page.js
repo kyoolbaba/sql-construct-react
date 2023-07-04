@@ -17,18 +17,19 @@ import {
   toggleSection,
 } from "../Redux/parameter/parameterType";
 import dummy_payload from "../static/dummyPayload";
+import arrangeJsonBody from "../static/arrangeJsonBody";
 
 const MainPage = (props) => {
   const stateData = useSelector((state) => state);
   // Initializing Variables (static value)
   const [result, setResult] = useState("");
   const sendRequest = () => {
-    console.log(stateData);
+    console.log(stateData,"Printing from fetch requests");
+    arrangeJsonBody(stateData)
 
-    console.log("d");
     fetch("http://127.0.0.1:5000/sql_construct", {
       method: "POST",
-      body: JSON.stringify(dummy_payload),
+      body: JSON.stringify(arrangeJsonBody(stateData)),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       },
@@ -84,9 +85,9 @@ const MainPage = (props) => {
     <>
       <div className="main-page">{props.heading}</div>
 
-      <div>Selected Param {selectedParam}</div>
-      <div>Selected section {pageContent}</div>
-      {selectedParam !== "" && (
+      {/* <div>Selected Param {selectedParam}</div> */}
+      {/* <div>Selected section {pageContent}</div> */}
+      {true && (
         <div className="toggle-main-section">
           <div
             className={
@@ -137,7 +138,7 @@ const MainPage = (props) => {
           />
         </div>
         <div className="editable-section">
-          {pageContent === "Function Details" && (
+          { pageContent === "Function Details" && (
             <>
               <div className="parameter-type">
                 <ParameterType
@@ -165,7 +166,7 @@ const MainPage = (props) => {
               </div>
             </>
           )}
-          {pageContent === "Option Details" &&
+          { selectedParam !== "" &&  pageContent === "Option Details" &&
           (["SINGLE_SELECT", "MULTI_SELECT"].indexOf(
             paramdata[selectedParam].parameter_type.type
           ) !==
@@ -180,7 +181,7 @@ const MainPage = (props) => {
           ) : (
             <></>
           )}
-          {pageContent === "Parameter Details" &&
+          {selectedParam !== "" && pageContent === "Parameter Details" &&
             parameterList.indexOf(selectedParam) !== -1 && (
               <div className="parameter-section">
                 <div className="parameter-type">

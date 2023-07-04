@@ -14,6 +14,8 @@
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
+    overflow-y: auto;
+    height: 50vh;
 }
 
 .options-editable-section-name {
@@ -43,3 +45,4 @@ margin-left: 2%;
     margin-top: 2%;
     margin-bottom: 2%;
 }
+
