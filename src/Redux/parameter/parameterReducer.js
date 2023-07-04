@@ -84,11 +84,13 @@ const parameterReducer = (state = initialState, action) => {
   } 
 
   else if(action.type === actions.ALTERPARAMETER){
-    console.log("reached alter method into reducers")
+    // console.log("reached alter method into reducers")
     let data={...state.data}
-    console.log(data,action,"before")
-    data[action.payload.name]=action.payload
-    console.log(data,"after")
+    // console.log(data,action,"before")
+    if (action.payload.name!==""){
+      data[action.payload.name]=action.payload
+      // console.log(data,"after")
+    }
 
     return{
         ...state,data:data

@@ -17,13 +17,13 @@ const ParameterType = (props) => {
   const dispatch = useDispatch();
 //   console.log(currentParameter, "printing CUrre3nt parameter");
 
-  const handleOptionsSelection = (e, st, key) => {
-    changeParamValue(e, key, "");
+  const handleOptionsSelection = (e, st, key,val) => {
+    changeParamValue(e, key, "Options",val);
   };
 
   let list_ = [];
 
-  const changeParamValue = (event, key, inputType) => {
+  const changeParamValue = (event, key, inputType,val) => {
     console.log("Came to chagne");
     let current_param = currentParameter;
     if (inputType !== "TEXT") {
@@ -32,7 +32,7 @@ const ParameterType = (props) => {
         "printing data json trree"
       );
       console.log(props.paramJsonTree, key, event);
-      current_param[props.paramJsonTree][key] = event.target.innerText;
+      current_param[props.paramJsonTree][key] = val;
       dispatch(alterParameter(current_param));
 
       dispatch(setCurrentParam(current_param));
@@ -94,15 +94,15 @@ const ParameterType = (props) => {
               value={currentParameter[props.paramJsonTree][key]}
             >
               {props.parameter[key].options.map((val) => (
-                <MenuItem
+                <MenuItem  
                   onClick={(event) =>
                     handleOptionsSelection(
                       event,
                       props.heading_name + key + "-simple-select",
-                      key
+                      key,val
                     )
                   }
-                  value={val.toString()}
+                  value={val}
                 >
                   {val.toString()}
                 </MenuItem>

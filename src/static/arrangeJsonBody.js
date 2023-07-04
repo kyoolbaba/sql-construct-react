@@ -21,7 +21,7 @@ for (let key in data.parameterReducer.data){
     try{
     param_details.default={
         required:data.parameterReducer.data[key].parameter_type.required,
-        option_order:data.parameterReducer.parameterList.indexOf(key)
+        option_order:data.parameterReducer.parameterList.indexOf(key)+1
     }
     param_details.options=data.parameterReducer.data[key].options
 

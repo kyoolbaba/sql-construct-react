@@ -158,7 +158,7 @@ const MainPage = (props) => {
                   // function_name={selectedParam}
                   // data={data}
                   // setData={setData}
-                  heading_name={"function_meta_data"}
+                  heading_name={"Function Meta Data"}
                   paramJsonTree={"function_meta_data"}
                   // selectedParam={selectedParam}
                   parameter={function_details.function_meta_data}
