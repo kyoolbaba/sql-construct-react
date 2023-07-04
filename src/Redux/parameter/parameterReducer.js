@@ -14,6 +14,18 @@ const initialState = {
   toggleSection:"Parameter Details"
 };
 
+const actual_initialState = {
+  functionDetails:ParameterBody(""),
+  data: {},
+  parameterList: [],
+  selectedParam: "",
+  currentParam: ParameterBody(""),
+  parameterCurrentdefault:{},
+  functionCurrentdefault:{},
+  optionsDetailsCurrentDefault:{},
+  toggleSection:"Parameter Details"
+};
+
 const parameterReducer = (state = initialState, action) => {
   if (action.type === actions.ADDPARAMETER) {
 
@@ -161,7 +173,7 @@ else if (action.type===actions.ALTEROPTIONSLIST){
 }
 
 else if(action.type===actions.RESETALLDATA){
-  return initialState
+  return {...actual_initialState,functionDetails:ParameterBody("")}
 
 }
 
